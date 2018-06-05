@@ -26,10 +26,10 @@ export const GradientButtonTypes = (theme) => {
       button: {
         alignSelf: 'stretch',
         height: scaleVertical(56),
-        borderRadius: 28,
+        borderRadius: 5,
       },
       gradient: {
-        borderRadius: 28
+        borderRadius: 5,
       }
     },
     statItem: {
