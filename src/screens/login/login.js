@@ -54,7 +54,7 @@ export class LoginScreen extends Component {
                     rkType='clear'
                     style={styles.region}
                     onPress={() => Alert.alert(
-                      '警告',
+                      '提示',
                       '暂不支持更改 国家/地区',
                       [ {text: '确认', onPress: () => null}, ],
                     )}
