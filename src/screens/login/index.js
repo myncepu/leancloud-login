@@ -4,5 +4,8 @@
  *
  * Distributed under terms of the MIT license.
  */
+export * from './getPhoneNumber'
 export * from './login'
-export * from './smscode'
+export * from './profile'
+export * from './setNicknameAndPassword'
+export * from './authLoading'

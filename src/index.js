@@ -3,17 +3,26 @@ import {
   View
 } from 'react-native'
 import {
-  createStackNavigator
+  createStackNavigator,
+  createSwitchNavigator,
 } from 'react-navigation'
 import {AppLoading, Font} from 'expo'
+
+import { leancloudInit } from './initLeanCloud'
 import * as Screens from './screens'
 import {bootstrap} from './config/bootstrap'
 import {KittenTheme} from './config/theme'
 
 bootstrap()
 
-const KittenApp = createStackNavigator({
-  First: {
+const AuthStack = createStackNavigator({
+  GetPhoneNumber: {
+    screen: Screens.GetPhoneNumberScreen,
+  },
+  SetNicknameAndPassword: {
+    screen: Screens.SetNicknameAndPasswordScreen,
+  },
+  Login: {
     screen: Screens.LoginScreen,
   },
 }, {
@@ -26,10 +35,39 @@ const KittenApp = createStackNavigator({
   },
 })
 
+const AppStack = createStackNavigator({
+  Profile: {
+    screen: Screens.ProfileScreen,
+  },
+}, {
+  navigationOptions: {
+    headerMode: 'screen',
+    headerTintColor: KittenTheme.colors.text.inverse,
+    headerStyle: {
+      backgroundColor: KittenTheme.colors.primary,
+    }
+  },
+})
+
+const RootNavigator = createSwitchNavigator(
+  {
+    App: AppStack,
+    Auth: AuthStack,
+    AuthLoading: Screens.AuthLoadingScreen,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+  }
+)
+
 class App extends Component {
   state = {
     loaded: false
-  };
+  }
+
+  componentDidMount() {
+    leancloudInit()
+  }
 
   componentWillMount() {
     this._loadAssets()
@@ -61,7 +99,7 @@ class App extends Component {
       //   }}
       // />
       <View style={{flex: 1}}>
-        <KittenApp />
+        <RootNavigator />
       </View>
     )
   }
