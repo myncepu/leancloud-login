@@ -13,7 +13,14 @@ import * as Screens from './screens'
 import {bootstrap} from './config/bootstrap'
 import {KittenTheme} from './config/theme'
 
+import { leanStorageTest, logIn, signUp } from './leanStorageTest'
+
 bootstrap()
+leancloudInit()
+
+// signUp()
+logIn()
+leanStorageTest()
 
 const AuthStack = createStackNavigator({
   GetPhoneNumber: {
@@ -63,10 +70,6 @@ const RootNavigator = createSwitchNavigator(
 class App extends Component {
   state = {
     loaded: false
-  }
-
-  componentDidMount() {
-    leancloudInit()
   }
 
   componentWillMount() {
